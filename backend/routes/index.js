@@ -8,16 +8,14 @@ const apiRouter = require('./api');
 //   res.send('Hello World!');
 // });
 
+// GET /api/restore-user
+const { restoreUser } = require('../../utils/auth.js');
 
-// Add a XSRF-TOKEN cookie
-router.get("/api/csrf/restore", (req, res) => {
-    const csrfToken = req.csrfToken();
-    res.cookie("XSRF-TOKEN", csrfToken);
-    res.status(200).json({
-      'XSRF-Token': csrfToken
-    });
-  });
-  
-  router.use('/api', apiRouter);
+router.use(restoreUser);
+
+
+
+
+
 
 module.exports = router;
